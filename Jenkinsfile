@@ -28,8 +28,8 @@ pipeline {
 
         stage('Run') {
             steps {
-//                 sh 'sudo docker stop laravel-dsp'
-//                 sh 'sudo docker rm laravel-dsp'
+                sh 'sudo docker stop laravel-dsp'
+                sh 'sudo docker rm laravel-dsp'
                 sh 'sudo docker run -d --name laravel-dsp -p 1234:1234 laravel-dsp:latest'
             }
         }
