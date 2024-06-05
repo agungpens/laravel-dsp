@@ -31,8 +31,22 @@ app.get("/", (req, res) => {
         <h2>Connected Users:</h2>
         <pre>${JSON.stringify(connectedUsers, null, 2)}</pre>
         <h2>Received Data:</h2>
-        <pre>${receivedData ? JSON.stringify(receivedData, null, 2) : "No data received yet"}</pre>
+        <pre>${
+            receivedData
+                ? JSON.stringify(receivedData, null, 2)
+                : "No data received yet"
+        }</pre>
+        <form action="/reset" method="POST">
+            <button type="submit">Reset Data</button>
+        </form>
     `);
+});
+
+// Add a route to handle POST requests for resetting data
+app.post("/reset", (req, res) => {
+    receivedData = null;
+    connectedUsers = [];
+    res.redirect("/");
 });
 
 io.on("connection", (socket) => {
@@ -54,7 +68,7 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("User disconnected:", socket.id);
         // Remove the user from the connected users list
-        connectedUsers = connectedUsers.filter(id => id !== socket.id);
+        connectedUsers = connectedUsers.filter((id) => id !== socket.id);
         // Notify all clients about the disconnection
         io.emit("user-disconnected", socket.id);
     });
