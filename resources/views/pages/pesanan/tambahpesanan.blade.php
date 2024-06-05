@@ -175,8 +175,8 @@
 </script>
 <script>
     $(function() {
-    let ip_address = '127.0.0.1';
-    let socket_port = '1234';
+        let ip_address = 'http://34.143.219.34';
+            let socket_port = '1234';
 
     let socket = io(ip_address + ':' + socket_port);
 
