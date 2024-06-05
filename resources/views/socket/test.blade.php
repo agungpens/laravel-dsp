@@ -17,7 +17,7 @@
     </script>
     <script>
         $(function () {
-            let ip_address = 'https://socket.io.test.hello-ivy.id';
+            let ip_address = '34.143.219.34';
             let socket_port = '1234';
 
             let socket = io(ip_address + ':' + socket_port);
