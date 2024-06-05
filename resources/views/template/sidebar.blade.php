@@ -4,7 +4,7 @@
     </a>
     <nav class="vertnav navbar navbar-light">
         <!-- nav bar -->
-        <div class="w-100 mb-4 d-flex">
+        <div class="w-100 mb-4 d-flex brand">
             <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="{{ url('dashboard') }}">
                 <img src="{{ asset('assets/images/logodsp.png') }}" alt="" width="100" height="50">
             </a>

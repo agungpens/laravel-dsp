@@ -38,6 +38,9 @@ Route::post('laporan.penjualan', [ApiDashboardController::class, 'getData'])->na
 Route::post('getData.laporan.penjualan', [ApiLaporanPenjualanController::class, 'getData'])->name('getData.laporan.penjualan');
 Route::post('cetak_pdf', [ApiLaporanPenjualanController::class, 'cetak_pdf'])->name('cetak_pdf');
 
+
+
+
 // API MOBILE
 // Login User With API
 Route::post('login/loginApi', [LoginController::class, 'loginMobile']);
