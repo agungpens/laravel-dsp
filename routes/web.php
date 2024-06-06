@@ -33,11 +33,9 @@ Route::post('uploadbuktipembayaran', [cekPesananController::class, 'uploadbuktip
 Route::get('test-socket', function () {
     return view('socket.test');
 });
-Route::get('home', function () {
-    return view('pages.cek.cekpesanan');
-})->middleware('guest');
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('home', [DashboardController::class, 'index'])->middleware('auth');
 
 
 

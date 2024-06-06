@@ -1,16 +1,20 @@
 import express from "express";
-import http from "http";
+import https from "https";
+import fs from "fs";
 import { Server } from "socket.io";
 
-// const express = require("express");
-// const http = require("http");
-// const { Server } = require("socket.io");
-
 const app = express();
-const server = http.createServer(app);
+
+// Load SSL certificate and key
+const options = {
+    key: fs.readFileSync('path/to/private-key.pem'),
+    cert: fs.readFileSync('path/to/certificate.pem')
+};
+
+const server = https.createServer(options, app);
 const io = new Server(server, {
     cors: {
-        origin: "*", // Change to your specific domain or "*" to allow all
+        origin: "*",
         methods: ["GET", "POST"],
         allowedHeaders: ["my-custom-header"],
         credentials: true,
@@ -27,7 +31,7 @@ app.get("/", (req, res) => {
     const host = address.address === "::" ? "localhost" : address.address;
     const port = address.port;
     res.send(`
-        <h1>Socket.IO server is running on http://${host}:${port}</h1>
+        <h1>Socket.IO server is running on https://${host}:${port}</h1>
         <h2>Connected Users:</h2>
         <pre>${JSON.stringify(connectedUsers, null, 2)}</pre>
         <h2>Received Data:</h2>
@@ -80,5 +84,5 @@ server.listen(PORT, () => {
     const address = server.address();
     const host = address.address === "::" ? "localhost" : address.address;
     const port = address.port;
-    console.log(`Socket.IO server listening on http://${host}:${port}`);
+    console.log(`Socket.IO server listening on https://${host}:${port}`);
 });
