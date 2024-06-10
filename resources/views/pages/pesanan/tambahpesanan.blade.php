@@ -173,12 +173,27 @@
 <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"
     integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous">
 </script>
+
+{{-- <script src="{{ asset('utils/socket.io.js') }}"></script> --}}
 <script>
     $(function() {
-        let ip_address = 'http://34.143.219.34';
-            let socket_port = '1234';
+        // let ip_address = '34.125.194.3'; //public
+        let ip_address = 'localhost'; //lokal
+        let socket_port = '3000';
+        let ip_ngrok = 'https://7052-2001-448a-5040-410e-2576-83dc-b30d-e578.ngrok-free.app/';
+        let ip_cloudflare = 'https://ctrl-outlets-gym-flashers.trycloudflare.com/';
+        // let socket = io(ip_address + ':' + socket_port,{
+        //     secure: true,
+        //     rejectUnauthorized: false
+        // });
+        // let socket = io(ip_ngrok);
+        let socket = io(ip_cloudflare);
 
-    let socket = io(ip_address + ':' + socket_port);
+        socket.on('connect', function() {
+                    console.log('Connected to the server');
+                    toastr.success('Connected to the server!');
+                });
+
 
     let jenis = ''
     let id_produk= ''
