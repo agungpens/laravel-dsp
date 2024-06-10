@@ -15,7 +15,7 @@ class ListPesananController extends Controller
     public function index()
     {
         $data = DataPelanggan::with(['ListPesanan', 'PesananUserPelanggan'])->get();
-        $data = $data->where('PesananUserPelanggan.status_pesanan', '!=', null);
+        $data = $data->where('PesananUserPelanggan.status_pesanan', '!==', null);
 
         $total_dikirim = $data->where('PesananUserPelanggan.status_pesanan', 2)->sum('PesananUserPelanggan.total_harga_pesanan');
         $total_diproses = $data->where('PesananUserPelanggan.status_pesanan', 1)->sum('PesananUserPelanggan.total_harga_pesanan');
