@@ -47,7 +47,7 @@ services:
       dockerfile: Dockerfile
     image: laravel-app
     container_name: laravel-app
-    restart: unless-stopped
+    restart: always
     working_dir: /var/www
     depends_on:
       - laravel-dsp-mysql
