@@ -33,7 +33,7 @@ pipeline {
             }
         }
 
-        stage('Run') {
+        stage('Cleanup') {
             steps {
                 sh 'sudo make copy-env'
                 sh 'sudo make key-generate'
