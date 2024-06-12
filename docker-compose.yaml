@@ -2,7 +2,7 @@ services:
   laravel-dsp-mysql:
     container_name: laravel-dsp-mysql
     image: mysql:latest
-    command: --default-authentication-plugin=mysql_native_password
+    command: ["mysqld", "--mysql-native-password=ON"]
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 33~S$#E_m314
