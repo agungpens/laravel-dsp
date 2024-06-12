@@ -33,13 +33,13 @@ pipeline {
             }
         }
 
-        stage('Cleanup') {
-            steps {
+//         stage('Cleanup') {
+//             steps {
 //                 sh 'sudo make copy-env'
-                sh 'sudo make key-generate'
-                sh 'sudo make config-cache'
-                sh 'sudo make route-cache'
-            }
-        }
+//                 sh 'sudo make key-generate'
+//                 sh 'sudo make config-cache'
+//                 sh 'sudo make route-cache'
+//             }
+//         }
     }
 }
