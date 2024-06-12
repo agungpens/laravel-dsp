@@ -1,13 +1,54 @@
-FROM node:lts-alpine
+# Use the official PHP image as the base image
+FROM php:8.1-fpm
 
-WORKDIR /usr/src/app
+# Set working directory
+WORKDIR /var/www
 
-COPY package*.json ./
+# Install system dependencies and required libraries for PHP extensions
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    libonig-dev \
+    locales \
+    zip \
+    jpegoptim optipng pngquant gifsicle \
+    vim \
+    unzip \
+    git \
+    curl \
+    libzip-dev \
+    libicu-dev
 
-RUN npm install --only=production
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY . .
+# Install PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd intl zip
 
-EXPOSE 1234
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-CMD [ "node", "server.js" ]
+# Copy existing application directory contents
+COPY . /var/www
+
+# Debugging step to list contents of /var/www
+RUN ls -la /var/www
+
+# Copy .env.production.sample to .env
+RUN cp /var/www/.env.production.sample /var/www/.env
+
+# Change ownership of application directory
+RUN chown -R www-data:www-data /var/www
+
+# Copy existing application directory permissions
+COPY --chown=www-data:www-data . /var/www
+
+# Change current user to www
+USER www-data
+
+# Expose port 9000 and start php-fpm server
+EXPOSE 9000
+CMD ["php-fpm"]

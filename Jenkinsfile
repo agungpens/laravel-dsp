@@ -22,15 +22,18 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'sudo docker build -t laravel-dsp:latest .'
+                sh 'sudo make stop-production'
+                sh 'sudo make build-production'
             }
         }
 
         stage('Run') {
             steps {
-                sh 'sudo docker stop laravel-dsp'
-                sh 'sudo docker rm laravel-dsp'
-                sh 'sudo docker run -d --name laravel-dsp -p 1234:1234 laravel-dsp:latest'
+                sh 'sudo make start-production'
+                sh 'docker-compose exec app php cp /var/www/.env.production.sample /var/www/.env'
+                sh 'docker-compose exec app php artisan key:generate'
+                sh 'docker-compose exec app php artisan config:cache'
+                sh 'docker-compose exec app php artisan route:cache'
             }
         }
     }
