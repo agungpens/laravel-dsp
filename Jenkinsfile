@@ -30,10 +30,15 @@ pipeline {
         stage('Run') {
             steps {
                 sh 'sudo make start-production'
-                sh 'docker-compose exec app php cp /var/www/.env.production.sample /var/www/.env'
-                sh 'docker-compose exec app php artisan key:generate'
-                sh 'docker-compose exec app php artisan config:cache'
-                sh 'docker-compose exec app php artisan route:cache'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                sh 'sudo make copy-env'
+                sh 'sudo make key-generate'
+                sh 'sudo make config-cache'
+                sh 'sudo make route-cache'
             }
         }
     }
