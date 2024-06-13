@@ -182,12 +182,13 @@
         let socket_port = '3000';
         let ip_ngrok = 'https://7052-2001-448a-5040-410e-2576-83dc-b30d-e578.ngrok-free.app/';
         let ip_cloudflare = 'https://ctrl-outlets-gym-flashers.trycloudflare.com/';
+        let ip_vm = 'https://ryuza.engineer/';
         // let socket = io(ip_address + ':' + socket_port,{
         //     secure: true,
         //     rejectUnauthorized: false
         // });
         // let socket = io(ip_ngrok);
-        let socket = io(ip_cloudflare);
+        let socket = io(ip_vm);
 
         socket.on('connect', function() {
                     console.log('Connected to the server');
