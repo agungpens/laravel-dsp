@@ -22,24 +22,16 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'sudo make stop-production'
-                sh 'sudo make build-production'
+                sh 'sudo docker build -t laravel-dsp:latest .'
             }
         }
 
         stage('Run') {
             steps {
-                sh 'sudo make start-production'
+//                 sh 'sudo docker stop bot-berita'
+//                 sh 'sudo docker rm bot-berita'
+                sh 'sudo docker run -d --name bot-berita bot-berita:latest'
             }
         }
-
-//         stage('Cleanup') {
-//             steps {
-//                 sh 'sudo make copy-env'
-//                 sh 'sudo make key-generate'
-//                 sh 'sudo make config-cache'
-//                 sh 'sudo make route-cache'
-//             }
-//         }
     }
 }
