@@ -30,7 +30,7 @@ pipeline {
             steps {
 //                 sh 'sudo docker stop bot-berita'
 //                 sh 'sudo docker rm bot-berita'
-                sh 'sudo docker run -d --name bot-berita bot-berita:latest'
+                sh 'sudo docker run -d --name laravel-dsp laravel-dsp:latest'
             }
         }
     }
