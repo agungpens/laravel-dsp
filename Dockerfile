@@ -6,7 +6,7 @@ COPY package*.json ./
 
 RUN npm install --only=production
 
-COPY docker/node .
+COPY . .
 
 EXPOSE 3000
 
