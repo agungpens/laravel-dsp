@@ -1,12 +1,11 @@
 services:
   laravel-dsp-mysql:
     container_name: laravel-dsp-mysql
-    image: mysql:latest
-    command: ["mysqld", "--mysql-native-password=ON"]
-    restart: always
+    image: cgr.dev/chainguard/mariadb:latest
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: 33~S$#E_m314
-      MYSQL_DATABASE: pencatatan
+      MARIADB_ROOT_PASSWORD: 33~S$#E_m314
+      MARIADB_DATABASE: pencatatan
     volumes:
       - type: volume
         source: laravel-dsp-mysql
