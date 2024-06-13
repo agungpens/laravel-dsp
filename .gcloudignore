@@ -1,0 +1,4 @@
+# PHP Composer dependencies:
+/vendor/
+/storage/logs/laravel.log
+/node_modules/
