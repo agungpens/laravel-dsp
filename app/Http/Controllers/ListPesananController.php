@@ -20,6 +20,7 @@ class ListPesananController extends Controller
         $total_dikirim = $data->where('PesananUserPelanggan.status_pesanan', 2)->sum('PesananUserPelanggan.total_harga_pesanan');
         $total_diproses = $data->where('PesananUserPelanggan.status_pesanan', 1)->sum('PesananUserPelanggan.total_harga_pesanan');
         $total_semua = $data->where('PesananUserPelanggan.status_pesanan', '!=', 0)->sum('PesananUserPelanggan.total_harga_pesanan');
+        $total_ditolak = $data->where('PesananUserPelanggan.status_pesanan', '===', 0)->sum('PesananUserPelanggan.total_harga_pesanan');
 
 
         // dd($data->toArray());
@@ -28,6 +29,7 @@ class ListPesananController extends Controller
             'total_semua' => $total_semua,
             'total_dikirim' => $total_dikirim,
             'total_diproses' => $total_diproses,
+            'total_ditolak' => $total_ditolak,
         ]);
     }
 

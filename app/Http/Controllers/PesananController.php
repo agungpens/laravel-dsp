@@ -18,7 +18,7 @@ class PesananController extends Controller
     {
         // $data = PesananModel::with(['dataPelanggan','Status','Produk'])->get();
         $data = DataPelanggan::with(['ListPesanan', 'PesananUserPelanggan'])->get()->where('PesananUserPelanggan.status_pesanan', '===', null);
-        // dd($data);
+        // dd( $data->toArray());
         return view('pages.pesanan.pesanan', [
             'data' => $data->toArray()
         ]);

@@ -23,7 +23,7 @@ class ApiDashboardController extends Controller
         $data['data'] = $data['data']->get();
 
         $data['pesanan_dikirim'] = $data['data']->where('status_pesanan', 2)->count();
-        $data['pesanan_ditolak'] = $data['data']->where('status_pesanan', 0)->count();
+        $data['pesanan_ditolak'] = $data['data']->where('status_pesanan', '===', 0)->count();
         $data['pesanan_diproses'] = $data['data']->where('status_pesanan', 1)->count();
 
 

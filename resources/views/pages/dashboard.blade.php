@@ -1,57 +1,55 @@
 @extends('template.main')
 
 @section('content')
-    <div class="row align-items-center mb-2">
-        <div class="col-6">
-            <form class="form-inline">
-                <div class="form-group d-none d-lg-inline">
-                    <div class=" text-muted">
-                        {{ $tanggal_hari_ini }}
-                        <span class="small"></span>
-                    </div>
+<div class="row align-items-center mb-2">
+    <div class="col-6">
+        <form class="form-inline">
+            <div class="form-group d-none d-lg-inline">
+                <div class=" text-muted">
+                    {{ $tanggal_hari_ini }}
+                    <span class="small"></span>
                 </div>
-            </form>
-        </div>
-        <div class="col-6">
-            <h2 class="h5 float-right">Selamat Datang {{ auth()->user()->username }}!</h2>
-
-        </div>
-        <div class="col-6">
-        </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-6">
+        <h2 class="h5 float-right">Selamat Datang {{ auth()->user()->username }}!</h2>
 
     </div>
-    @if (auth()->user()->role == 2)
-    @else
-        <div class="row">
-            <div class="col">
-                <label for="tanggal_awal">Tanggal awal</label>
-                <input type="date" class="form-control" name="tanggal_awal" id="tanggal_awal"
-                    value="{{ $tanggal_1_bulan_ini }}">
-            </div>
-            <div class="col">
-                <label for="tanggal_akhir">Tanggal akhir</label>
-                <input type="date" class="form-control" name="tanggal_akhir" id="tanggal_akhir"
-                    value="{{ $tanggal_hari_ini }}">
-            </div>
-            <div class="col mt-auto">
-                <button type="button" class="btn btn-success" onclick="Dashboard.getData()"> Filter</button>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-12">
-                <div class="" id="container"></div>
-            </div>
-        </div>
-    @endif
+    <div class="col-6">
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col">
+        <label for="tanggal_awal">Tanggal awal</label>
+        <input type="date" class="form-control" name="tanggal_awal" id="tanggal_awal"
+            value="{{ $tanggal_1_bulan_ini }}">
+    </div>
+    <div class="col">
+        <label for="tanggal_akhir">Tanggal akhir</label>
+        <input type="date" class="form-control" name="tanggal_akhir" id="tanggal_akhir" value="{{ $tanggal_hari_ini }}">
+    </div>
+    <div class="col mt-auto">
+        <button type="button" class="btn btn-success" onclick="Dashboard.getData()"> Filter</button>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-12">
+        <div class="" id="container"></div>
+    </div>
+</div>
+
 @endsection
 
 
 
 
 @section('script')
-    <script>
-        let Dashboard = {
+<script>
+    let Dashboard = {
             getData: () => {
                 let tanggal_awal = $('#tanggal_awal').val();
                 let tanggal_akhir = $('#tanggal_akhir').val();
@@ -146,5 +144,6 @@
         $(function() {
             Dashboard.getData();
         });
-    </script>
+</script>
 @endsection
+

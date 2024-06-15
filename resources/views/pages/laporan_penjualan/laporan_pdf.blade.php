@@ -91,6 +91,7 @@
                 <tr>
                     <th>No</th>
                     <th>Tanggal</th>
+                    <th>Kode Pesanan</th>
                     <th>Nama</th>
                     <th>Alamat</th>
                     <th>Produk</th>
@@ -101,21 +102,22 @@
             </thead>
             <tbody>
                 @foreach ($data['data_dikirim']->toArray() as $key => $item)
-                    <tr>
-                        <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $key + 1 }}</td>
-                        <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $item['tanggal_pesan'] }}</td>
-                        <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $item['user']['nama_pelanggan'] }}</td>
-                        <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $item['user']['alamat'] }}</td>
-                        @foreach ($item['list_pesanan_user'] as $index => $value)
-                            @if ($index !== 0)
-                    <tr>
-                @endif
-                <td>{{ $value['produk']['nama_produk'] }}</td>
-                <td>Rp. {{ number_format($value['produk']['harga'], 0, ',', '.') }}</td>
-                <td>{{ $value['qty'] }}</td>
-                <td>Rp. {{ number_format($value['total_pesanan'], 0, ',', '.') }}</td>
-                @if ($index === 0)
-                    </tr>
+                <tr>
+                    <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $key + 1 }}</td>
+                    <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $item['tanggal_pesan'] }}</td>
+                    <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $item['kode_pesanan'] }}</td>
+                    <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $item['user']['nama_pelanggan'] }}</td>
+                    <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $item['user']['alamat'] }}</td>
+                    @foreach ($item['list_pesanan_user'] as $index => $value)
+                    @if ($index !== 0)
+                <tr>
+                    @endif
+                    <td>{{ $value['produk']['nama_produk'] }}</td>
+                    <td>Rp. {{ number_format($value['produk']['harga'], 0, ',', '.') }}</td>
+                    <td>{{ $value['qty'] }}</td>
+                    <td>Rp. {{ number_format($value['total_pesanan'], 0, ',', '.') }}</td>
+                    @if ($index === 0)
+                </tr>
                 @endif
                 @endforeach
                 </tr>
@@ -123,34 +125,7 @@
                 <tr>
                     <th colspan="7" style="text-align: right;">Total</th>
                     <th id="total_semua">Rp. {{ number_format($data['total_harga_dikirim'], 0, ',', '.') }}</th>
-                </tr>
-                <tr role="group" class="bg-light">
-                    <th colspan="8">DITOLAK</th>
-                </tr>
-                @foreach ($data['data_ditolak']->toArray() as $key => $item)
-                    <tr>
-                        <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $key + 1 }}</td>
-                        <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $item['tanggal_pesan'] }}</td>
-                        <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $item['user']['nama_pelanggan'] }}
-                        </td>
-                        <td rowspan="{{ count($item['list_pesanan_user']) }}">{{ $item['user']['alamat'] }}</td>
-                        @foreach ($item['list_pesanan_user'] as $index => $value)
-                            @if ($index !== 0)
-                    <tr>
-                @endif
-                <td>{{ $value['produk']['nama_produk'] }}</td>
-                <td>Rp. {{ number_format($value['produk']['harga'], 0, ',', '.') }}</td>
-                <td>{{ $value['qty'] }}</td>
-                <td>Rp. {{ number_format($value['total_pesanan'], 0, ',', '.') }}</td>
-                @if ($index === 0)
-                    </tr>
-                @endif
-                @endforeach
-                </tr>
-                @endforeach
-                <tr>
-                    <th colspan="7" style="text-align: right;">Total</th>
-                    <th id="total_ditolak">Rp. {{ number_format($data['total_harga_ditolak'], 0, ',', '.') }}</th>
+                    <th></th>
                 </tr>
             </tbody>
 

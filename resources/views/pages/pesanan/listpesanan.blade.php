@@ -133,7 +133,7 @@ $c = 1;
                     {{-- buatkan total --}}
                     <tr>
                         <td colspan="6" class="text-right"><b>Total</b></td>
-                        <td class="bg-success text-white"><b>Rp.{{ $total_semua }}</b></td>
+                        <td class="bg-danger text-white"><b>Rp.{{ $total_ditolak }}</b></td>
                         <td colspan="4"></td>
                     </tr>
                 </tfoot>
